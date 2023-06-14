@@ -1,4 +1,28 @@
+import React, { useEffect, useState } from 'react';
 
+function Dashboard(props) {
+  const [data, setData] = useState([]);
+  // const contract = props.contract
+  useEffect(() => {
+    const get = async () => {
+
+      const x = localStorage.getItem('user');
+      document.getElementById('user_name').innerText = x;
+      console.log(x);
+      let y,y1,d1;
+      console.log(window.contract);
+      if (window.contract.methods !== undefined) {
+        const datar = await window.contract.methods.getMyStructs().call();
+        setData(datar);
+        y = await window.contract1.methods.get_data().call();
+        y1 = await window.contract1.methods.get_divdata().call();
+        d1 = await window.contract.methods.getMyStructs().call();
+        console.log(y,y1,d1,)
+  
+        let tabledata = '';
+        let l, d;
+        for (let j = 0; j < y.length; j++) {
+          if (x === y[j][1]) {
             d = y[j][0];
           }
         }
